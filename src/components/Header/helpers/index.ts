@@ -1,0 +1,1 @@
+export { getHeaderNavs } from './getHeaderNavs'

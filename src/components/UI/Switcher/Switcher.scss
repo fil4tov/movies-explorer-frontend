@@ -1,0 +1,58 @@
+@import "styles/variables/global";
+
+$switcher-width: 36px;
+$switcher-height: 20px;
+
+$circle-width: 10px;
+$circle-height: $circle-width;
+$circle-padding: 5px;
+
+.switcher {
+  display: inline-block;
+
+  &__wrapper {
+    cursor: pointer;
+    display: inline-flex;
+    gap: 15px;
+  }
+
+  &__background {
+    display: flex;
+    align-items: center;
+    width: $switcher-width;
+    height: $switcher-height;
+    background-color: $green;
+    border-radius: $border-radius-l;
+    transition: background-color $transition;
+    position: relative;
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .switcher__wrapper .switcher__background {
+      background-color: #343434;
+
+      & > .switcher__circle {
+        background-color: #A0A0A0;
+        transform: translateX($circle-padding);
+      }
+    }
+  }
+
+  &__circle {
+    display: block;
+    width: $circle-width;
+    height: $circle-height;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    transform: translateX($switcher-width - ($circle-width + $circle-padding));
+    transition: transform $transition, background-color $transition;
+  }
+
+  &__label {
+    user-select: none;
+    font-size: 13px;
+    line-height: 18px;
+  }
+}

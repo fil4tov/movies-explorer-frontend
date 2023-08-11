@@ -1,0 +1,14 @@
+@import "styles/variables/global";
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  transition: opacity $transition;
+
+  &:hover {
+    opacity: .7;
+  }
+}

@@ -1,0 +1,65 @@
+@import "styles/variables/global";
+@import "styles/variables/section";
+
+.section {
+
+  &_paddingX_m {
+    padding-left: $padding-x-m-desktop;
+    padding-right: $padding-x-m-desktop;
+
+    @media screen and (max-width: $max-width-laptop) {
+      padding-left: $padding-x-m-tablet;
+      padding-right: $padding-x-m-tablet;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      padding-left: $padding-x-m-phone;
+      padding-right: $padding-x-m-phone;
+    }
+  }
+
+  &_paddingX_s {
+    padding-left: $padding-x-s-desktop;
+    padding-right: $padding-x-s-desktop;
+
+    @media screen and (max-width: $max-width-laptop) {
+      padding-left: $padding-x-s-tablet;
+      padding-right: $padding-x-s-tablet;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      padding-left: $padding-x-s-phone;
+      padding-right: $padding-x-s-phone;
+    }
+  }
+
+  &_paddingY_m {
+    padding-top: $padding-y-m-desktop;
+    padding-bottom: $padding-y-m-desktop;
+
+    @media screen and (max-width: $max-width-laptop) {
+      padding-top: $padding-y-m-tablet;
+      padding-bottom: $padding-y-m-tablet;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      padding-top: $padding-y-m-phone;
+      padding-bottom: $padding-y-m-phone;
+    }
+  }
+
+  &_paddingY_s {
+    padding-top: $padding-y-s-desktop;
+    padding-bottom: $padding-y-s-desktop;
+
+    @media screen and (max-width: $max-width-laptop) {
+      padding-top: $padding-y-s-tablet;
+      padding-bottom: $padding-y-s-tablet;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      padding-top: $padding-y-s-phone;
+      padding-bottom: $padding-y-s-phone;
+    }
+  }
+}

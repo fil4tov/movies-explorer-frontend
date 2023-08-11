@@ -1,0 +1,44 @@
+@import "styles/variables/global";
+
+.drawer {
+  opacity: 0;
+  z-index: -5;
+  position: fixed;
+  inset: 0;
+  background-color: rgba($black, 0.4);
+  pointer-events: none;
+  transition: $transition;
+
+  &_opened {
+    opacity: 1;
+    z-index: $drawer-z-index;
+    pointer-events: auto;
+  }
+
+  &__menu {
+    position: fixed;
+    width: 50dvw;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $grey-9;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transform: translateX(520px);
+    transition: $transition;
+    padding: 20px;
+
+    @media screen and (max-width: $max-width-laptop) {
+      width: 70dvw;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      width: 100dvw;
+    }
+
+    &_opened {
+      transform: translateX(0);
+    }
+  }
+}

@@ -1,0 +1,146 @@
+@import "styles/variables/global";
+
+.header {
+  padding: 20px 70px;
+
+  @media screen and (max-width: $max-width-laptop) {
+    padding: 20px 30px;
+  }
+
+  @media screen and (max-width: $max-width-mobile) {
+    padding: 20px 15px;
+  }
+
+  &_color {
+    &_blue {
+      background-color: $blue-dark;
+    }
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    @media screen and (max-width: $max-width-laptop) {
+      gap: 15px;
+    }
+
+    &_mode {
+      &_auth {
+        gap: 20px;
+
+        @media screen and (max-width: $max-width-laptop) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    transition: opacity $transition;
+
+    &:hover {
+      opacity: .8;
+    }
+
+    &:active {
+      opacity: .7;
+    }
+
+    &_type {
+
+      &_active {
+        font-weight: 500;
+
+        @media screen and (max-width: $max-width-laptop) {
+          border-bottom: 1px solid $white;
+        }
+      }
+
+      &_account {
+        margin-left: 30px;
+
+        @media screen and (max-width: $max-width-laptop) {
+          margin: 0;
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+
+      &_button {
+        padding: 8px 20px;
+        background-color: $green;
+        color: $black;
+        border-radius: $border-radius-s;
+      }
+
+      &_logo {
+        border-bottom: none;
+      }
+
+      &_menu {
+        @media screen and (max-width: $max-width-laptop) {
+          font-size: 18px;
+          font-weight: 500;
+          padding-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  &__account-icon {
+    width: 30px;
+    height: 30px;
+    background-color: $grey-5;
+    border-radius: $border-radius-s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+  }
+
+  &__burger-button {
+    padding: 0;
+    display: none;
+    z-index: $drawer-button-z-index;
+
+    @media screen and (max-width: $max-width-laptop) {
+      display: block;
+    }
+  }
+
+  &__burger-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__drawer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 140px 0 90px;
+    height: 100%;
+  }
+
+  &__drawer-profile {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+  }
+}
