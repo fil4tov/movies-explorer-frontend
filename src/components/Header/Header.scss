@@ -3,7 +3,7 @@
 .header {
   padding: 20px 70px;
 
-  @media screen and (max-width: $max-width-laptop) {
+  @media screen and (max-width: $max-width-tablet) {
     padding: 20px 30px;
   }
 
@@ -28,7 +28,7 @@
     align-items: center;
     gap: 30px;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       gap: 15px;
     }
 
@@ -36,7 +36,7 @@
       &_auth {
         gap: 20px;
 
-        @media screen and (max-width: $max-width-laptop) {
+        @media screen and (max-width: $max-width-tablet) {
           display: none;
         }
       }
@@ -67,7 +67,7 @@
       &_active {
         font-weight: 500;
 
-        @media screen and (max-width: $max-width-laptop) {
+        @media screen and (max-width: $max-width-tablet) {
           border-bottom: 1px solid $white;
         }
       }
@@ -75,7 +75,7 @@
       &_account {
         margin-left: 30px;
 
-        @media screen and (max-width: $max-width-laptop) {
+        @media screen and (max-width: $max-width-tablet) {
           margin: 0;
           font-size: 14px;
           line-height: 16px;
@@ -94,7 +94,7 @@
       }
 
       &_menu {
-        @media screen and (max-width: $max-width-laptop) {
+        @media screen and (max-width: $max-width-tablet) {
           font-size: 18px;
           font-weight: 500;
           padding-bottom: 5px;
@@ -119,7 +119,7 @@
     display: none;
     z-index: $drawer-button-z-index;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       display: block;
     }
   }

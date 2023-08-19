@@ -11,7 +11,7 @@
     line-height: 58px;
     letter-spacing: -2px;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       margin: 80px 0 20px;
     }
 
@@ -30,7 +30,7 @@
     line-height: 20px;
     letter-spacing: -0.56px;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       font-size: 12px;
       line-height: 18px;
       letter-spacing: -0.48px;
@@ -51,11 +51,11 @@
     justify-content: center;
     list-style: none;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       margin-top: 80px;
     }
 
-    @media screen and (max-width: $max-width-laptop - 1) {
+    @media screen and (max-width: $max-width-tablet - 1) {
       display: grid;
       grid-template-columns: repeat(4, max-content);
     }

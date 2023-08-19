@@ -7,7 +7,7 @@
     padding-left: $padding-x-m-desktop;
     padding-right: $padding-x-m-desktop;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       padding-left: $padding-x-m-tablet;
       padding-right: $padding-x-m-tablet;
     }
@@ -22,7 +22,7 @@
     padding-left: $padding-x-s-desktop;
     padding-right: $padding-x-s-desktop;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       padding-left: $padding-x-s-tablet;
       padding-right: $padding-x-s-tablet;
     }
@@ -37,7 +37,7 @@
     padding-top: $padding-y-m-desktop;
     padding-bottom: $padding-y-m-desktop;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       padding-top: $padding-y-m-tablet;
       padding-bottom: $padding-y-m-tablet;
     }
@@ -52,7 +52,7 @@
     padding-top: $padding-y-s-desktop;
     padding-bottom: $padding-y-s-desktop;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       padding-top: $padding-y-s-tablet;
       padding-bottom: $padding-y-s-tablet;
     }

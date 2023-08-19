@@ -50,6 +50,7 @@ export const Header = () => {
               blockScrollOnOpen
               closeOnOverlay
               hideOnDesktop
+              className='header'
             >
               {drawerNav}
             </Drawer>

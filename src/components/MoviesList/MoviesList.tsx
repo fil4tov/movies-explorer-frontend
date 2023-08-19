@@ -22,7 +22,7 @@ export const MoviesList = ({ loadButton, movies, cards }: MoviesListProps) => {
         {movies.map(({ movieId, ...movie }, i) => {
           //временно для верстки
           return i < cards
-            ? <MovieCard key={movieId} {...movie} />
+            ? <li key={movieId} ><MovieCard {...movie} /></li>
             : null
         })}
       </ul>

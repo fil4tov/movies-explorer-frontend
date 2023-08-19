@@ -17,7 +17,7 @@
   &__info-block {
     max-width: 550px;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       max-width: 320px;
     }
 
@@ -46,7 +46,7 @@
     font-size: 14px;
     line-height: 20px;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       font-size: 12px;
       line-height: 18px;
     }
@@ -61,7 +61,7 @@
     display: flex;
     margin-top: 110px;
 
-    @media screen and (max-width: $max-width-laptop) {
+    @media screen and (max-width: $max-width-tablet) {
       margin-top: 90px;
     }
 

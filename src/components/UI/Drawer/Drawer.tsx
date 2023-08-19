@@ -11,6 +11,7 @@ interface DrawerProps {
   blockScrollOnOpen?: boolean
   closeOnOverlay?: boolean
   hideOnDesktop?: boolean
+  className?: string
 }
 
 export const Drawer = ({
@@ -19,7 +20,8 @@ export const Drawer = ({
   children,
   blockScrollOnOpen,
   closeOnOverlay,
-  hideOnDesktop
+  hideOnDesktop,
+  className
 }: DrawerProps) => {
   const { body } = document
 
@@ -55,9 +57,8 @@ export const Drawer = ({
   return (
     <Portal>
       <div
-        className={cn(['drawer'], {
-          drawer_opened: Boolean(isOpen),
-          'drawer_no-desktop': Boolean(hideOnDesktop)
+        className={cn(['drawer', className], {
+          drawer_opened: Boolean(isOpen)
         })}
         onClick={handleCloseOnOverlay}
       >

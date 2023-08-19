@@ -16,7 +16,7 @@
       row-gap: 35px;
     }
 
-    @media screen and (max-width: $max-width-mobile) {
+    @media screen and (max-width: $max-width-mobile + 100px) {
       grid-template-columns: minmax(100px, 1fr);
     }
   }
