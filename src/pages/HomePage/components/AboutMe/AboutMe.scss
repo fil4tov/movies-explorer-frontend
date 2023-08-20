@@ -1,0 +1,115 @@
+@import "styles/variables/global";
+
+.about-me {
+  padding-bottom: 95px;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 65px;
+
+    @media screen and (max-width: $max-width-mobile + 40) {
+      flex-wrap: wrap-reverse;
+      justify-content: center;
+      margin-top: 60px;
+      gap: 40px;
+    }
+  }
+
+  &__info-container {
+    max-width: 600px;
+
+    @media screen and (max-width: $max-width-tablet) {
+      max-width: 365px;
+    }
+  }
+
+  &__name {
+    margin: 0 0 20px;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+
+    @media screen and (max-width: $max-width-tablet) {
+      font-size: 40px;
+      line-height: 40px;
+      letter-spacing: -1.6px;
+      margin: 0 0 15px;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      font-size: 30px;
+      letter-spacing: -1.2px;
+      margin: 0 0 20px;
+    }
+  }
+
+  &__profession {
+    margin: 0 0 25px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+
+    @media screen and (max-width: $max-width-tablet) {
+      font-size: 12px;
+      line-height: 18px;
+      margin: 0 0 20px;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      font-size: 11px;
+      line-height: 16px
+    }
+  }
+
+  &__description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 22px;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: $max-width-tablet) {
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      font-size: 11px;
+      line-height: 16px;
+    }
+  }
+
+  &__link {
+    margin-top: 70px;
+    font-size: 14px;
+    font-weight: 500;
+
+    @media screen and (max-width: $max-width-tablet) {
+      margin-top: 90px;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      margin-top: 40px;
+    }
+  }
+
+  &__photo {
+    width: 100%;
+    max-width: 270px;
+    object-fit: cover;
+    border-radius: $border-radius-m;
+
+    @media screen and (max-width: $max-width-tablet) {
+      max-width: 255px;
+      max-height: 310px;
+    }
+
+    @media screen and (max-width: $max-width-mobile) {
+      max-width: 290px;
+      max-height: 350px;
+    }
+  }
+}

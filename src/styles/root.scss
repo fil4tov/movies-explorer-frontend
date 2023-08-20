@@ -1,0 +1,27 @@
+@import "./variables/global";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.root {
+  box-sizing: border-box;
+  font-family: 'Inter', Roboto, sans-serif;
+  font-weight: 400;
+  background-color: $bg-color-primary;
+  color: $text-color-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

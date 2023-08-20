@@ -1,0 +1,8 @@
+@import "styles/variables/global";
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba($grey-2, .2);
+  margin: 10px 0;
+}

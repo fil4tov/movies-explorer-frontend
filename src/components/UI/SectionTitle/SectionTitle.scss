@@ -1,0 +1,21 @@
+@import "styles/variables/global";
+
+.section__title {
+  font-size: 22px;
+  letter-spacing: -0.88px;
+  margin: 0;
+  font-weight: 400;
+
+  &::after {
+    display: block;
+    content: '';
+    height: 1px;
+    background-color: $grey-1;
+    margin: 25px 0;
+  }
+
+  @media screen and (max-width: $max-width-mobile) {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+}

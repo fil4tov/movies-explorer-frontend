@@ -1,0 +1,5 @@
+export { Promo } from './Promo/Promo'
+export { AboutProject } from './AboutProject/AboutProject'
+export { Technologies } from './Technologies/Technologies'
+export { AboutMe } from './AboutMe/AboutMe'
+export { Portfolio } from './Portfolio/Portfolio'

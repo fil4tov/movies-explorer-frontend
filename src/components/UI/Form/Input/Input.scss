@@ -1,0 +1,47 @@
+@import "styles/variables/global";
+
+.input {
+  width: 100%;
+  color: $white;
+  font-family: inherit;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid $grey-4;
+  padding: 0 0 10px 0;
+  transition: border $transition;
+
+  &:not(&_type_no-border):focus {
+    border-bottom: 1px solid $blue;
+  }
+
+  &_type {
+    &_no-border {
+      border-bottom: none;
+      padding: 0;
+    }
+
+
+    &_error {
+      color: $red;
+
+      &:not(.input_type_no-border):focus {
+        border-bottom: 1px solid $red;
+      }
+    }
+  }
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff;
+  transition: background-color ease-in-out 0s;
+  transition-delay: 99999s;
+}

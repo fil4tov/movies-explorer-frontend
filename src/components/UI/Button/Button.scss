@@ -1,0 +1,82 @@
+@import "styles/variables/global";
+
+@mixin buttons-color($color) {
+  background-color: $color;
+
+  &:hover {
+    background-color: rgba($color, 0.8);
+  }
+
+  &:active {
+    background-color: rgba($color, 0.7);
+  }
+
+  &:disabled {
+    background-color: mix($color, $grey-4, 20);
+    cursor: not-allowed;
+  }
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: $border-radius-xs;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  text-decoration: none;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  color: inherit;
+  font-family: inherit;
+  transition: background-color $transition, opacity $transition;
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: fit-content;
+
+  &:not(&_color_green, &_color_blue, &_color_grey, &_color_red):hover {
+    opacity: 0.8;
+  }
+
+  &_color {
+    &_green {
+      @include buttons-color($green);
+      color: $black
+    }
+
+    &_blue {
+      @include buttons-color($blue);
+    }
+
+    &_red {
+      @include buttons-color($red);
+    }
+
+    &_grey {
+      @include buttons-color($grey-5);
+    }
+  }
+
+  &_radius {
+    &_s {
+      border-radius: $border-radius-s;
+    }
+
+    &_l {
+      border-radius: $border-radius-l;
+    }
+
+    &_xl {
+      border-radius: $border-radius-xl;
+    }
+  }
+
+  &_size {
+    &_full {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}

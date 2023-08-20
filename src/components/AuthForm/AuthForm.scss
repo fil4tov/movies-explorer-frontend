@@ -1,0 +1,75 @@
+@import "styles/variables/global";
+
+.auth-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: $max-width-mobile) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  &__container {
+    max-width: 400px;
+    width: 100%;
+
+    @media screen and (max-width: $max-width-mobile) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 40px 0;
+
+    @media screen and (max-width: $max-width-mobile) {
+      margin: 40px 0 80px;
+    }
+  }
+
+  &__form {
+    width: 100%;
+  }
+
+  &__fields {
+    border: none;
+    margin: 0;
+    padding: 0;
+    min-height: 240px;
+  }
+
+  &__button {
+    margin-top: 95px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+    font-size: 14px;
+
+    @media screen and (max-width: $max-width-mobile) {
+      font-size: 12px;
+    }
+
+    &-text {
+      color: $grey-3;
+      margin: 0;
+    }
+
+    &-link {
+      color: $blue;
+      text-decoration: none;
+    }
+  }
+}
