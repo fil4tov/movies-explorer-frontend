@@ -1,11 +1,25 @@
 import { Button, Divider, Input, Section, Switcher } from 'components/UI'
-import './Search.scss'
 import { type FormEvent, useState } from 'react'
+import './Search.scss'
 
-export const Search = () => {
-  const [value, setValue] = useState('')
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+export type FilterParams = {
+  search: string
+  onlyShorts: boolean
+}
+
+type SearchProps = {
+  onSubmit: (params: FilterParams) => void
+  initialSearch?: string
+  initialShorts?: boolean
+}
+
+export const Search = ({ onSubmit, initialSearch, initialShorts }: SearchProps) => {
+  const [search, setSearch] = useState(initialSearch ?? '')
+  const [onlyShorts, setOnlyShorts] = useState(initialShorts ?? false)
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    onSubmit({ search, onlyShorts })
   }
 
   return (
@@ -15,16 +29,16 @@ export const Search = () => {
       paddingY="s"
       aria-label='Поиск'
     >
-      <form onSubmit={onSubmit} className="search__input-wrapper">
+      <form onSubmit={handleSubmit} className="search__input-wrapper">
         <Input
-          value={value}
-          onChange={e => setValue(e.target.value)}
+          value={search}
+          onChange={e => setSearch(e.target.value)}
           className="search__input"
           placeholder="Фильм"
           noBorder
         />
         <Button
-          disabled={!value}
+          disabled={!search}
           type='submit'
           className="search__button"
           borderRadius="s"
@@ -34,7 +48,12 @@ export const Search = () => {
         </Button>
       </form>
 
-      <Switcher id='switcher' label="Короткометражки" />
+      <Switcher
+        id='switcher'
+        checked={onlyShorts}
+        onChange={() => setOnlyShorts(prev => !prev)}
+        label="Только короткометражки"
+      />
 
       <Divider className='search__divider' />
     </Section>

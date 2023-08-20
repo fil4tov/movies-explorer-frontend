@@ -1,6 +1,6 @@
 export { Footer } from './Footer/Footer'
 export { Header } from './Header/Header'
-export { Search } from './Search/Search'
+export { Search, type FilterParams } from './Search/Search'
 export { MoviesList } from './MoviesList/MoviesList'
 export { MovieCard } from './MovieCard/MovieCard'
 export { AuthForm } from './AuthForm/AuthForm'

@@ -10,7 +10,7 @@ const NotFoundPage = () => {
   }
 
   return (
-    <Section className='not-found'>
+    <Section className='not-found' containerClassName='not-found__container'>
       <div className='not-found__info'>
         <h1 className='not-found__title'>404</h1>
         <p className='not-found__subtitle'>

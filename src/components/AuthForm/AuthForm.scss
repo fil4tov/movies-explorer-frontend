@@ -45,9 +45,16 @@
   }
 
   &__button {
-    margin-top: 95px;
     padding-top: 13px;
     padding-bottom: 13px;
+  }
+
+  &__error {
+    margin: 95px 0 20px;
+    color: $red;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
   }
 
   &__footer {

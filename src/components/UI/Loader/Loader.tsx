@@ -1,12 +1,16 @@
 import './Loader.scss'
+import { cn } from 'utils/helpers'
 
-export const Loader = ({ isLoading }: { isLoading: boolean }) => {
+type LoaderProps = {
+  isLoading: boolean
+  className?: string
+}
+
+export const Loader = ({ className, isLoading }: LoaderProps) => {
   return (
     <>
       {isLoading && (
-        <div className="loader">
-          <span className='loader__circle' />
-        </div>
+        <span className={cn(['loader', className])} />
       )}
     </>
   )

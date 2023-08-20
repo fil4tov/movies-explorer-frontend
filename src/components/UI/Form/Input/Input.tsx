@@ -1,7 +1,7 @@
 import React, { type InputHTMLAttributes } from 'react'
 import { cn } from 'utils/helpers'
+import { useFormControlContext } from '../FormControl/FormControl'
 import './Input.scss'
-import { useFormControlContext } from 'components/UI/Form/FormControl/FormControl'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   noBorder?: boolean

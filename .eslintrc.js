@@ -36,7 +36,9 @@ module.exports = {
     'react/jsx-tag-spacing': ['error', { beforeSelfClosing: 'always' }],
     'import/newline-after-import': 'error',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'error',
-    'prefer-promise-reject-errors': 'off'
+    'react-hooks/exhaustive-deps': 'warn',
+    'prefer-promise-reject-errors': 'off',
+    '@typescript-eslint/consistent-type-definitions': 'off',
+    '@typescript-eslint/consistent-type-assertions': 'off'
   }
 }

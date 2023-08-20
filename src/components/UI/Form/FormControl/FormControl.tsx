@@ -4,7 +4,7 @@ import './FormControl.scss'
 
 interface FormControlState {
   isRequired?: boolean
-  error?: string
+  error?: string | boolean
 }
 
 interface FormControlProps extends FormControlState {

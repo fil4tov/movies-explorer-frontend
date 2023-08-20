@@ -1,4 +1,6 @@
 import { type RouteProps } from 'react-router-dom'
+import { type $Keys, type $Values } from 'utility-types'
+import { RequireAuth } from 'core/hoc'
 import {
   HomePage,
   NotFoundPage,
@@ -9,11 +11,11 @@ import {
   SignUpPage
 } from 'pages'
 
-type AppRouteKeys = keyof typeof APP_ROUTES
-type RoutePropsWithCustomPath = RouteProps & {
-  path?: typeof APP_ROUTES[AppRouteKeys]
+type AppRouteNames = $Keys<typeof APP_ROUTES>
+type AppRouteProps = RouteProps & {
+  path?: $Values<typeof APP_ROUTES>
 }
-type RouterConfig = Record<AppRouteKeys, RoutePropsWithCustomPath>
+type RouterConfig = Record<AppRouteNames, AppRouteProps>
 
 export const APP_ROUTES = {
   HOME: '/',
@@ -32,15 +34,15 @@ export const ROUTER_CONFIG: RouterConfig = {
   },
   MOVIES: {
     path: APP_ROUTES.MOVIES,
-    element: <MoviesPage />
-  },
-  PROFILE: {
-    path: APP_ROUTES.PROFILE,
-    element: <ProfilePage />
+    element: <RequireAuth component={MoviesPage} />
   },
   SAVED_MOVIES: {
     path: APP_ROUTES.SAVED_MOVIES,
-    element: <SavedMoviesPage />
+    element: <RequireAuth component={SavedMoviesPage} />
+  },
+  PROFILE: {
+    path: APP_ROUTES.PROFILE,
+    element: <RequireAuth component={ProfilePage} />
   },
   SIGN_IN: {
     path: APP_ROUTES.SIGN_IN,

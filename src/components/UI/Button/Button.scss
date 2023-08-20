@@ -12,7 +12,8 @@
   }
 
   &:disabled {
-    background-color: mix($color, $grey-4, 20);
+    background-color: rgba($color, 0.3);
+    opacity: .7;
     cursor: not-allowed;
   }
 }
@@ -33,7 +34,10 @@
   font-family: inherit;
   transition: background-color $transition, opacity $transition;
   box-sizing: border-box;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
   max-width: fit-content;
 
   &:not(&_color_green, &_color_blue, &_color_grey, &_color_red):hover {
@@ -78,5 +82,10 @@
       max-width: 100%;
       width: 100%;
     }
+  }
+
+  &__loader {
+    width: 16px !important;
+    height: 16px !important;
   }
 }

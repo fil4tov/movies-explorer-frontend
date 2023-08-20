@@ -1,19 +1,25 @@
-import { MoviesList, Search } from 'components'
+import { type FilterParams, MoviesList, Search } from 'components'
+import { useMovies } from 'core/providers'
 import { useEffect, useState } from 'react'
-import { type Movie, movieApi } from 'modules/movies'
+import { type Movie, filterMovies } from 'modules/movies'
 
 const SavedMoviesPage = () => {
-  const [movies, setMovies] = useState<Movie[]>([])
+  const { isLoading, savedMovies } = useMovies()
+  const [filtered, setFiltered] = useState<Movie[]>([])
 
   useEffect(() => {
-    movieApi.getAllMovies()
-      .then(setMovies)
-  }, [])
+    setFiltered(savedMovies)
+  }, [savedMovies])
+
+  const onSubmit = async (params: FilterParams) => {
+    const filtered = filterMovies(savedMovies, params)
+    setFiltered(filtered)
+  }
 
   return (
     <>
-      <Search />
-      <MoviesList movies={movies} cards={3} />
+      <Search onSubmit={onSubmit} />
+      <MoviesList cards={filtered} isLoading={isLoading} areMoviesLoaded noCardsLimit />
     </>
   )
 }

@@ -1,4 +1,9 @@
-export interface Movie {
+import { type Dispatch, type MutableRefObject, type SetStateAction } from 'react'
+import { type State } from '../types'
+
+export type Movie = {
+  _id: string | null
+  owner: string | null
   country: string
   director: string
   duration: number
@@ -10,59 +15,18 @@ export interface Movie {
   movieId: number
   nameRU: string
   nameEN: string
-  owner?: string
 }
 
-export interface MovieBeatFilm {
-  id: number
-  nameRU: string
-  nameEN: string
-  director: string
-  country: string
-  year: string
-  duration: number
-  description: string
-  trailerLink: string
-  created_at: string
-  updated_at: string
-  image: {
-    id: number
-    name: string
-    alternativeText: string
-    caption: string
-    width: number
-    height: number
-    formats: {
-      thumbnail: {
-        hash: string
-        ext: string
-        mime: string
-        width: number
-        height: number
-        size: number
-        path: null
-        url: string
-      }
-      small: {
-        hash: string
-        ext: string
-        mime: string
-        width: number
-        height: number
-        size: number
-        path: null
-        url: string
-      }
-    }
-    hash: string
-    ext: string
-    mime: string
-    size: number
-    url: string
-    previewUrl: string
-    provider: string
-    provider_metadata: null
-    created_at: string
-    updated_at: string
-  }
-}
+export type MoviePayload = Omit<Movie, '_id' | 'owner'>
+
+export type MoviesState = State<{
+  movies: Movie[]
+  savedMovies: Movie[]
+  setMovies: Dispatch<SetStateAction<Movie[]>>
+  setSavedMovies: Dispatch<SetStateAction<Movie[]>>
+  getAllMovies: () => Promise<Movie[]>
+  getAllSavedMovies: () => Promise<void>
+  addMovie: (data: Movie) => void
+  deleteMovie: (id: string) => void
+  areMoviesLoaded: MutableRefObject<boolean>
+}>

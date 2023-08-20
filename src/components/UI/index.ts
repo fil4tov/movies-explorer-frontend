@@ -8,6 +8,7 @@ export { Divider } from './Divider/Divider'
 export { Portal } from './Portal/Portal'
 export { Drawer } from './Drawer/Drawer'
 export { Loader } from './Loader/Loader'
+export { PageLoader } from './PageLoader/PageLoader'
 
 export { FormControl } from './Form/FormControl/FormControl'
 export { Input } from './Form/Input/Input'

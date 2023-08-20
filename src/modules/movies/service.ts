@@ -1,28 +1,22 @@
 import { Service } from 'utils'
-import { FILMS_URL } from 'utils/constants'
-import { type Movie, type MovieBeatFilm } from './types'
+import { type Movie, type MoviePayload } from 'modules/movies/types'
+import { MAIN_URL } from 'utils/constants'
 
 class MoviesService extends Service {
   async getAllMovies () {
-    const movies: MovieBeatFilm[] = await this.request('beatfilm-movies', 'GET')
-    return this.modifyMoviesResponse(movies)
+    return await this.request<Movie[]>('movies', 'GET')
   }
 
-  private modifyMoviesResponse (movies: MovieBeatFilm[]): Movie[] {
-    return movies.map(res => ({
-      movieId: res.id,
-      country: res.country,
-      description: res.description,
-      director: res.director,
-      duration: res.duration,
-      nameEN: res.nameEN,
-      nameRU: res.nameRU,
-      year: res.year,
-      trailerLink: res.trailerLink,
-      image: `${this.BASE_URL}${res.image.url}`,
-      thumbnail: `${this.BASE_URL}${res.image.formats.thumbnail.url}`
-    }))
+  async addMovie (movie: MoviePayload) {
+    return await this.requestWithBody<Movie>('movies', 'POST', movie)
+  }
+
+  async deleteMovie (id: string) {
+    return await this.request(`movies/${id}`, 'DELETE')
   }
 }
 
-export const movieApi = new MoviesService(FILMS_URL)
+export const moviesApi = new MoviesService({
+  baseUrl: MAIN_URL,
+  credentials: 'include'
+})

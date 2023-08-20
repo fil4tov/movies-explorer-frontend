@@ -8,3 +8,10 @@ export const portfolioLinks = [
 export const technologiesList = [
   'HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'
 ]
+
+export const JWT_STORAGE_KEY = 'jwt'
+
+export const LOCAL_STORAGE_KEYS = {
+  SEARCH_PARAMS: 'searchParams',
+  SEARCHED_MOVIES: 'searchedMovies'
+}

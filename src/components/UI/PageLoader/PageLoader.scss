@@ -1,0 +1,9 @@
+@import "styles/variables/global";
+
+.page-loader {
+  z-index: $loader-z-index;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
