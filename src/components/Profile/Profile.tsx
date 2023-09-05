@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Divider, Section } from 'components/UI'
 import { ProfileInputField } from './components'
 import { useAuthContext, useCurrentUser } from 'core/providers'
