@@ -15,5 +15,5 @@ export const RequireAuth = ({ component: Component }: RequireAuthProps) => {
     return <PageLoader isLoading={isLoading} />
   }
 
-  return isAuth ? <Component /> : <Navigate to={APP_ROUTES.SIGN_IN} replace />
+  return isAuth ? <Component /> : <Navigate to={APP_ROUTES.HOME} replace />
 }

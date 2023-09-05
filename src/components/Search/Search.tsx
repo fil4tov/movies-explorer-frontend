@@ -1,5 +1,5 @@
 import { Button, Divider, Input, Section, Switcher } from 'components/UI'
-import { type FormEvent, useState } from 'react'
+import { type FormEvent, useRef, useState } from 'react'
 import './Search.scss'
 
 export type FilterParams = {
@@ -9,17 +9,24 @@ export type FilterParams = {
 
 type SearchProps = {
   onSubmit: (params: FilterParams) => void
-  initialSearch?: string
-  initialShorts?: boolean
+  onToggleSwitcher: (params: FilterParams) => void
+  initialSearchParams?: FilterParams
 }
 
-export const Search = ({ onSubmit, initialSearch, initialShorts }: SearchProps) => {
-  const [search, setSearch] = useState(initialSearch ?? '')
-  const [onlyShorts, setOnlyShorts] = useState(initialShorts ?? false)
+export const Search = ({ onSubmit, onToggleSwitcher, initialSearchParams }: SearchProps) => {
+  const [search, setSearch] = useState(initialSearchParams?.search ?? '')
+  const [onlyShorts, setOnlyShorts] = useState(initialSearchParams?.onlyShorts ?? false)
+  const onlyShortsRef = useRef(initialSearchParams?.onlyShorts ?? false)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     onSubmit({ search, onlyShorts })
+  }
+
+  const handleToggleSwitch = () => {
+    setOnlyShorts(prev => !prev)
+    onlyShortsRef.current = !onlyShortsRef.current
+    onToggleSwitcher({ search, onlyShorts: onlyShortsRef.current })
   }
 
   return (
@@ -51,7 +58,7 @@ export const Search = ({ onSubmit, initialSearch, initialShorts }: SearchProps) 
       <Switcher
         id='switcher'
         checked={onlyShorts}
-        onChange={() => setOnlyShorts(prev => !prev)}
+        onChange={handleToggleSwitch}
         label="Только короткометражки"
       />
 

@@ -9,10 +9,10 @@ import {
 } from 'react'
 import { authApi, type AuthState } from 'modules/auth'
 import { type AuthUserValues } from 'modules/currentUser'
-import { hasJWT, removeFromStorage, toggleJWT } from 'utils/helpers'
+import { hasJWT, toggleJWT } from 'utils/helpers'
 import { useRequest } from 'utils/hooks'
 import { useCurrentUser } from 'core/providers'
-import { LOCAL_STORAGE_KEYS } from 'utils/constants'
+import { clearFilterQuery } from 'modules/movies'
 
 const AuthContext = createContext<AuthState>({} as AuthState)
 
@@ -41,8 +41,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         .then((user) => {
           setUser(user)
           loginUser()
-        })
-        .catch(console.log))
+        }))
   }, [request, loginUser, setUser])
 
   const getUserInfo = useCallback(async () => {
@@ -55,8 +54,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         })
         .catch(() => {
           toggleJWT(false)
-          removeFromStorage(LOCAL_STORAGE_KEYS.SEARCH_PARAMS)
-          removeFromStorage(LOCAL_STORAGE_KEYS.SEARCHED_MOVIES)
+          clearFilterQuery()
         }))
   }, [request, setUser])
 
@@ -68,8 +66,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
           setIsAuth(false)
           setHasToken(false)
           toggleJWT(false)
-          removeFromStorage(LOCAL_STORAGE_KEYS.SEARCH_PARAMS)
-          removeFromStorage(LOCAL_STORAGE_KEYS.SEARCHED_MOVIES)
+          clearFilterQuery()
         })
         .catch(console.log)
     )

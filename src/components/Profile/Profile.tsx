@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Button, Divider, Section } from 'components/UI'
 import { ProfileInputField } from './components'
 import { useAuthContext, useCurrentUser } from 'core/providers'
@@ -9,7 +9,10 @@ import { type UpdateUserValues } from 'modules/currentUser'
 
 export const Profile = () => {
   const { logout } = useAuthContext()
-  const { user, updateUser, isLoading, error } = useCurrentUser()
+  const { user, updateUser, isLoading } = useCurrentUser()
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
+  const [isEditable, setIsEditable] = useState(false)
 
   const name = useValidation({
     ...NAME_VALIDATION,
@@ -20,7 +23,8 @@ export const Profile = () => {
     initialValue: user.email ?? ''
   })
 
-  const [isEditable, setIsEditable] = useState(false)
+  const areValuesChanged = name.value !== user.name || email.value !== user.email
+  const isSubmitDisabled = !areValuesChanged || isLoading
 
   const onSubmit = async () => {
     const payload: UpdateUserValues = {
@@ -30,8 +34,9 @@ export const Profile = () => {
     try {
       await updateUser(payload)
       setIsEditable(false)
+      setSuccess('Изменения успешно применены')
     } catch (e) {
-      console.log(e)
+      setError(e as string)
     }
   }
 
@@ -40,6 +45,13 @@ export const Profile = () => {
     name.set(user.name ?? '')
     email.set(user.email ?? '')
   }
+
+  useEffect(() => {
+    return () => {
+      setError('')
+      setSuccess('')
+    }
+  }, [])
 
   return (
     <Section paddingY="s" className="profile" containerClassName="profile__container">
@@ -65,7 +77,10 @@ export const Profile = () => {
         <p className='profile__input-error'>{email.error}</p>
       </form>
 
-      <p className='profile__form-error'>{error}</p>
+      <div className='profile__form-messages'>
+        <p className='profile__form-error'>{error}</p>
+        <p className='profile__form-success'>{success}</p>
+      </div>
 
       <div className='profile__buttons'>
         {isEditable
@@ -75,6 +90,7 @@ export const Profile = () => {
                 color='blue'
                 fullWidth
                 isLoading={isLoading}
+                disabled={isSubmitDisabled}
               >
                 Сохранить
               </Button>

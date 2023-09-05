@@ -1,41 +1,59 @@
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { type FilterParams, MoviesList, Search } from 'components'
 import { Button } from 'components/UI'
 import { useMovies } from 'core/providers'
-import { useEffect, useMemo } from 'react'
-import { type Movie, filterMovies } from 'modules/movies'
+import {
+  type Movie,
+  filterMoviesByName,
+  filterMoviesByDuration,
+  saveFilterQuery
+} from 'modules/movies'
 import { LOCAL_STORAGE_KEYS } from 'utils/constants'
-import { getFromStorage, saveToStorage } from 'utils/helpers'
+import { getFromStorage } from 'utils/helpers'
 
 const MoviesPage = () => {
   const { isLoading, getAllMovies, setMovies, movies, areMoviesLoaded } = useMovies()
-  const onSubmit = async (params: FilterParams) => {
-    const res = await getAllMovies()
-    const filtered = filterMovies(res, params)
+  const [filteredMovies, setFilteredMovies] = useState<Movie[]>([])
 
-    setMovies(filtered)
-    saveToStorage(LOCAL_STORAGE_KEYS.SEARCHED_MOVIES, filtered)
-    saveToStorage(LOCAL_STORAGE_KEYS.SEARCH_PARAMS, params)
+  const onSubmit = async (filterParams: FilterParams) => {
+    const movies = await getAllMovies()
+    const searchedMovies = filterMoviesByName(movies, filterParams.search)
+    setMovies(searchedMovies)
+
+    const filteredByDuration = filterMoviesByDuration(searchedMovies, filterParams.onlyShorts)
+    setFilteredMovies(filteredByDuration)
+
+    saveFilterQuery({
+      searchedMovies,
+      filteredMovies: filteredByDuration,
+      filterParams
+    })
   }
 
-  const cards = useMemo<Movie[]>(() => {
-    const savedMovies = getFromStorage<Movie[]>(LOCAL_STORAGE_KEYS.SEARCHED_MOVIES) ?? []
-    return movies.length ? movies : savedMovies
-  }, [movies])
+  const onToggleSwitcher = (filterParams: FilterParams) => {
+    const filteredByDuration = filterMoviesByDuration(movies, filterParams.onlyShorts)
 
-  const { search, onlyShorts } = useMemo<Partial<FilterParams>>(() => {
-    const savedParams = getFromStorage<FilterParams>(LOCAL_STORAGE_KEYS.SEARCH_PARAMS)
+    setFilteredMovies(filteredByDuration)
 
-    if (savedParams) {
-      return {
-        search: savedParams.search,
-        onlyShorts: savedParams.onlyShorts
-      }
-    }
-    return {
-      onlyShorts: undefined,
-      search: undefined
-    }
+    saveFilterQuery({
+      searchedMovies: movies,
+      filteredMovies: filteredByDuration,
+      filterParams
+    })
+  }
+
+  const initialSearchParams = useMemo<FilterParams | undefined>(() => {
+    const savedParams = getFromStorage<FilterParams>(LOCAL_STORAGE_KEYS.FILTER_PARAMS)
+    return savedParams ?? undefined
   }, [])
+
+  useLayoutEffect(() => {
+    const savedSearchedMovies = getFromStorage<Movie[]>(LOCAL_STORAGE_KEYS.SEARCHED_MOVIES)
+    const savedFilteredMovies = getFromStorage<Movie[]>(LOCAL_STORAGE_KEYS.FILTERED_MOVIES)
+
+    if (savedSearchedMovies) setMovies(savedSearchedMovies)
+    if (savedFilteredMovies) setFilteredMovies(savedFilteredMovies)
+  }, [setMovies])
 
   useEffect(() => {
     return () => {
@@ -45,10 +63,14 @@ const MoviesPage = () => {
 
   return (
     <>
-      <Search initialSearch={search} initialShorts={onlyShorts} onSubmit={onSubmit} />
+      <Search
+        initialSearchParams={initialSearchParams}
+        onSubmit={onSubmit}
+        onToggleSwitcher={onToggleSwitcher}
+      />
       <MoviesList
         areMoviesLoaded={areMoviesLoaded.current}
-        cards={cards}
+        cards={filteredMovies}
         moreButton={<Button fullWidth color="grey">Ещё</Button>}
         isLoading={isLoading}
       />

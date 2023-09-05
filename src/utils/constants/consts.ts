@@ -12,6 +12,7 @@ export const technologiesList = [
 export const JWT_STORAGE_KEY = 'jwt'
 
 export const LOCAL_STORAGE_KEYS = {
-  SEARCH_PARAMS: 'searchParams',
-  SEARCHED_MOVIES: 'searchedMovies'
+  FILTER_PARAMS: 'filterParams',
+  SEARCHED_MOVIES: 'searchedMovies',
+  FILTERED_MOVIES: 'filteredMovies'
 }
