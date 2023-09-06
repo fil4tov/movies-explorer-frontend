@@ -1,19 +1,26 @@
-import { MoviesList, Search } from 'components'
+import { type FilterParams, MoviesList, Search } from 'components'
+import { useMovies } from 'core/providers'
 import { useEffect, useState } from 'react'
-import { type Movie, movieApi } from 'modules/movies'
+import { type Movie, filterMoviesByName, filterMoviesByDuration } from 'modules/movies'
 
 const SavedMoviesPage = () => {
-  const [movies, setMovies] = useState<Movie[]>([])
+  const { isLoading, savedMovies } = useMovies()
+  const [filteredMovies, setFilteredMovies] = useState<Movie[]>([])
 
   useEffect(() => {
-    movieApi.getAllMovies()
-      .then(setMovies)
-  }, [])
+    setFilteredMovies(savedMovies)
+  }, [savedMovies])
+
+  const filterMovies = ({ search, onlyShorts }: FilterParams) => {
+    const filteredByName = filterMoviesByName(savedMovies, search)
+    const filteredByDuration = filterMoviesByDuration(filteredByName, onlyShorts)
+    setFilteredMovies(filteredByDuration)
+  }
 
   return (
     <>
-      <Search />
-      <MoviesList movies={movies} cards={3} />
+      <Search onSubmit={filterMovies} onToggleSwitcher={filterMovies} />
+      <MoviesList cards={filteredMovies} isLoading={isLoading} areMoviesLoaded noCardsLimit />
     </>
   )
 }

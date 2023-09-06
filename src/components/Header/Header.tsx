@@ -5,6 +5,7 @@ import { APP_ROUTES } from 'core/config'
 import { cn } from 'utils/helpers'
 import { HeaderLink } from './components'
 import { getHeaderNavs } from './helpers'
+import { useAuthContext } from 'core/providers'
 import logo from 'assets/images/logo.svg'
 import burger from 'assets/images/burger.svg'
 import close from 'assets/images/close.svg'
@@ -12,10 +13,10 @@ import './Header.scss'
 
 export const Header = () => {
   const location = useLocation()
+  const { isAuth, isLoading } = useAuthContext()
   const { drawerNav, authorizedNav, unauthorizedNav } = getHeaderNavs()
   const [isMenuOpened, setIsMenuOpened] = useState(false)
   const isHomePage = location.pathname === APP_ROUTES.HOME
-  const auth = true
 
   const onToggleMenu = () => {
     setIsMenuOpened(prev => !prev)
@@ -34,9 +35,9 @@ export const Header = () => {
           <img src={logo} alt="Логотип" />
         </HeaderLink>
 
-        {auth ? authorizedNav : unauthorizedNav}
+        {!isLoading && (isAuth ? authorizedNav : unauthorizedNav)}
 
-        {auth && (
+        {isAuth && (
           <>
             <Button onClick={onToggleMenu} className="header__burger-button">
               {isMenuOpened

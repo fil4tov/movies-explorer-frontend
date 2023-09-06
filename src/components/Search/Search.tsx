@@ -1,11 +1,32 @@
 import { Button, Divider, Input, Section, Switcher } from 'components/UI'
+import { type FormEvent, useRef, useState } from 'react'
 import './Search.scss'
-import { type FormEvent, useState } from 'react'
 
-export const Search = () => {
-  const [value, setValue] = useState('')
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+export type FilterParams = {
+  search: string
+  onlyShorts: boolean
+}
+
+type SearchProps = {
+  onSubmit: (params: FilterParams) => void
+  onToggleSwitcher: (params: FilterParams) => void
+  initialSearchParams?: FilterParams
+}
+
+export const Search = ({ onSubmit, onToggleSwitcher, initialSearchParams }: SearchProps) => {
+  const [search, setSearch] = useState(initialSearchParams?.search ?? '')
+  const [onlyShorts, setOnlyShorts] = useState(initialSearchParams?.onlyShorts ?? false)
+  const onlyShortsRef = useRef(initialSearchParams?.onlyShorts ?? false)
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    onSubmit({ search, onlyShorts })
+  }
+
+  const handleToggleSwitch = () => {
+    setOnlyShorts(prev => !prev)
+    onlyShortsRef.current = !onlyShortsRef.current
+    onToggleSwitcher({ search, onlyShorts: onlyShortsRef.current })
   }
 
   return (
@@ -15,16 +36,16 @@ export const Search = () => {
       paddingY="s"
       aria-label='Поиск'
     >
-      <form onSubmit={onSubmit} className="search__input-wrapper">
+      <form onSubmit={handleSubmit} className="search__input-wrapper">
         <Input
-          value={value}
-          onChange={e => setValue(e.target.value)}
+          value={search}
+          onChange={e => setSearch(e.target.value)}
           className="search__input"
           placeholder="Фильм"
           noBorder
         />
         <Button
-          disabled={!value}
+          disabled={!search}
           type='submit'
           className="search__button"
           borderRadius="s"
@@ -34,7 +55,12 @@ export const Search = () => {
         </Button>
       </form>
 
-      <Switcher id='switcher' label="Короткометражки" />
+      <Switcher
+        id='switcher'
+        checked={onlyShorts}
+        onChange={handleToggleSwitch}
+        label="Только короткометражки"
+      />
 
       <Divider className='search__divider' />
     </Section>

@@ -1,11 +1,13 @@
 import { type ButtonHTMLAttributes } from 'react'
 import { cn } from 'utils/helpers'
 import './Button.scss'
+import { Loader } from 'components/UI/Loader/Loader'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'green' | 'blue' | 'red' | 'grey'
   borderRadius?: 's' | 'l' | 'xl'
   fullWidth?: boolean
+  isLoading?: boolean
 }
 
 export const Button = ({
@@ -14,11 +16,12 @@ export const Button = ({
   color,
   borderRadius,
   fullWidth,
+  isLoading = false,
   ...rest
 }: ButtonProps) => {
   return (
     <button
-      type='button'
+      type="button"
       className={cn(['button', className], {
         [`button_color_${color}`]: Boolean(color),
         [`button_radius_${borderRadius}`]: Boolean(borderRadius),
@@ -26,7 +29,13 @@ export const Button = ({
       })}
       {...rest}
     >
-      {children}
+      {isLoading && (
+        <Loader
+          isLoading={isLoading}
+          className="button__loader"
+        />
+      )}
+     {children}
     </button>
   )
 }

@@ -2,7 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Header, Footer } from 'components'
 import { Suspense } from 'react'
 import { APP_ROUTES } from 'core/config'
-import { Loader } from 'components/UI'
+import { PageLoader } from 'components/UI'
 
 export const Layout = () => {
   const location = useLocation()
@@ -19,7 +19,7 @@ export const Layout = () => {
     <>
       {isHeaderVisible && <Header />}
       <main className='main'>
-        <Suspense fallback={<Loader isLoading />}>
+        <Suspense fallback={<PageLoader isLoading />}>
           <Outlet />
         </Suspense>
       </main>
